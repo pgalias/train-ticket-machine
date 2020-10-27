@@ -9,8 +9,8 @@ jobs:
       - name: Install modules
         run: yarn
       - name: Lint scripts
-        run: eslint --ext .ts,.tsx,.vue ./src
+        run: yarn lint:scripts
       - name: Lint styles
-        run: stylelint  ./src/**/*.css
+        run: yarn lint:styles
       - name: Run tests
         run: yarn test
