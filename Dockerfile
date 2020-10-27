@@ -15,6 +15,6 @@ RUN yarn
 ADD . /var/app
 WORKDIR /var/app
 
-EXPOSE 8080
+EXPOSE 3000
 
-ENTRYPOINT yarn serve
+ENTRYPOINT yarn dev
