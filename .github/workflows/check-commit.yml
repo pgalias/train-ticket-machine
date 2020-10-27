@@ -1,0 +1,16 @@
+name: Check commit
+on: push
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Lint scripts
+        run: eslint --ext .ts,.tsx,.vue ./src
+      - name: Lint styles
+        run: stylelint  ./src/**/*.css
+      - name: Run tests
+        run: yarn test
