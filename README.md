@@ -1,3 +1,6 @@
+![Build](https://github.com/pgalias/train-ticket-machine/workflows/Check%20commit/badge.svg?branch=main)
+[![codecov](https://codecov.io/gh/pgalias/train-ticket-machine/branch/main/graph/badge.svg?token=6FEa5sKzOz)](undefined)
+
 ## Prerequisites
 
 - docker
