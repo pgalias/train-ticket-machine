@@ -8,5 +8,9 @@ jobs:
   codecov:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - uses: codecov/codecov-action@v1
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
+      - name: Upload code coverage
+        uses: codecov/codecov-action@v1
