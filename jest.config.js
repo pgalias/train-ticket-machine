@@ -2,11 +2,7 @@ module.exports = {
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  collectCoverageFrom: [
-    'src/**/*.ts?(x)',
-    'src/**/*.vue',
-    '!src/main.ts'
-  ],
+  collectCoverageFrom: ['src/**/*.ts?(x)', 'src/**/*.vue', '!src/main.ts'],
   coverageReporters: ['html', 'text', 'lcov', 'text-summary'],
   coverageThreshold: {
     global: {
@@ -16,12 +12,12 @@ module.exports = {
       lines: 80,
     },
   },
-  testMatch: [
-    "**/__tests__/**/*.[jt]s?(x)",
-    "**/?(*.)+(spec|test).[jt]s?(x)"
-  ],
-  preset: "@vue/cli-plugin-unit-jest/presets/typescript-and-babel",
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'vue'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
+  testMatch: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)'],
+  preset: '@vue/cli-plugin-unit-jest/presets/typescript-and-babel',
   transform: {
-    "^.+\\.vue$": "vue-jest"
+    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.(ts|tsx)?$': 'ts-jest',
   },
 };
