@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto flex flex-wrap justify-center">
+  <div class="container flex flex-wrap justify-center">
     <Button
       v-for="(symbol, index) in symbols"
       :key="index"
