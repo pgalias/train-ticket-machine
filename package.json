@@ -10,6 +10,7 @@
     "lint:styles": "stylelint  \"./src/**/*.css\" "
   },
   "dependencies": {
+    "lodash-es": "^4.17.15",
     "tailwindcss": "^1.9.6",
     "vue": "^3.0.2"
   },
@@ -19,6 +20,7 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@types/jest": "^26.0.15",
+    "@types/lodash-es": "^4.17.3",
     "@types/webpack-env": "^1.15.3",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
