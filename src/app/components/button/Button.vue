@@ -1,18 +1,12 @@
 <template>
-  <button
-    @click="click"
-    :disabled="disabled"
-    class="h-10 w-10 m-1 text-xs rounded shadow-md hover:shadow-sm bg-opacity-50 text-white font-semibold focus:outline-white"
-    :class="{
-      'bg-gray-400 cursor-not-allowed': disabled,
-      'bg-blue-500': !disabled,
-    }"
-  >
+  <button @click="click" :disabled="disabled" class="btn">
     {{ value }}
   </button>
 </template>
 
 <script>
+import './button.css';
+
 export default {
   name: 'Button',
   props: {

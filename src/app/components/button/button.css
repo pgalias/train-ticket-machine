@@ -1,0 +1,19 @@
+.btn {
+    @apply h-10 w-10 m-1;
+    @apply text-xs text-white font-semibold;
+    @apply rounded shadow-md;
+    @apply bg-blue-500 bg-opacity-50;
+}
+
+.btn:enabled:hover {
+    @apply shadow-sm;
+}
+
+.btn:enabled:focus {
+    @apply outline-white;
+}
+
+.btn.disabled,
+.btn[disabled] {
+    @apply bg-gray-400 cursor-not-allowed;
+}
