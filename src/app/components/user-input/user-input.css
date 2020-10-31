@@ -1,0 +1,18 @@
+/*
+    TODO: Post MVP: Return commented code
+*/
+
+.user-input {
+    @apply bg-gray-200 px-3 py-3 w-full;
+    @apply font-mono font-semibold text-sm text-gray-700 tracking-wider;
+    @apply rounded;
+    /*pointer-events: none;*/
+    /*cursor: not-allowed;*/
+}
+
+/*@screen sm {*/
+/*    .user-input {*/
+/*        pointer-events: initial;*/
+/*        cursor: initial;*/
+/*    }*/
+/*}*/
