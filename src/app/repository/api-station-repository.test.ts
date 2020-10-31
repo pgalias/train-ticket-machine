@@ -2,6 +2,7 @@ import ApiStationRepository from './api-station-repository';
 import Cache from '../../infrastructure/cache/cache';
 import { cacheMock } from '../../infrastructure/testUtils';
 import { STATIONS_CACHE_KEY } from '../../infrastructure/constants';
+import Station from '../../domain/model/station';
 
 describe('ApiStationRepository', () => {
   let cache: Cache;
@@ -17,7 +18,7 @@ describe('ApiStationRepository', () => {
   });
 
   test('should fetch data from endpoint and save results into cache', async () => {
-    const list = [
+    const list: Station[] = [
       {
         code: 'PZN',
         name: 'Poznan',

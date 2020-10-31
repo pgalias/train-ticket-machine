@@ -11,6 +11,7 @@ describe('UserInput', () => {
     });
 
     const input = wrapper.find('input');
+
     expect(input.element.value).toBe('FOO');
   });
 
@@ -24,6 +25,7 @@ describe('UserInput', () => {
     });
 
     const input = wrapper.find('input');
+
     expect(input.attributes('disabled')).toBeDefined();
   });
 

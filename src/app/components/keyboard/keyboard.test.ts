@@ -14,6 +14,7 @@ describe('Keyboard', () => {
     });
 
     const buttons = wrapper.findAll('button-stub');
+
     expect(buttons).toHaveLength(3);
   });
 
@@ -27,6 +28,7 @@ describe('Keyboard', () => {
     });
 
     const buttons = wrapper.findAll('button-stub');
+
     expect(buttons).toHaveLength(0);
   });
 });

@@ -1,9 +1,10 @@
 import { AggregateStationRepository, ApiStationRepository, InMemoryStationRepository } from '.';
 import Cache from '../../infrastructure/cache/cache';
 import { cacheMock } from '../../infrastructure/testUtils';
+import Station from '../../domain/model/station';
 
 describe('AggregateStationRepository', () => {
-  const list = [
+  const list: Station[] = [
     {
       code: 'PZN',
       name: 'Poznan',
@@ -60,6 +61,7 @@ describe('AggregateStationRepository', () => {
       apiRepository,
     ]);
     await aggregatedRepository.fetch();
+
     expect(get1).toHaveBeenCalled();
     expect(get2).toHaveBeenCalled();
     expect(fetchMock).not.toHaveBeenCalled();
@@ -72,6 +74,7 @@ describe('AggregateStationRepository', () => {
       inMemoryRepository2,
     ]);
     await aggregatedRepository.fetch();
+
     expect(get1).not.toHaveBeenCalled();
     expect(get2).not.toHaveBeenCalled();
     expect(fetchMock).toHaveBeenCalled();

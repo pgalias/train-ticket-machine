@@ -12,6 +12,7 @@ describe('Button', () => {
     });
 
     const button = wrapper.find('button');
+
     expect(button.text()).toBe('foo');
   });
 
@@ -27,6 +28,7 @@ describe('Button', () => {
 
     const button = wrapper.find('button');
     await button.trigger('click');
+
     expect(onClick).toHaveBeenCalledWith('foo');
   });
 
@@ -42,6 +44,7 @@ describe('Button', () => {
       });
 
       const button = wrapper.find('button');
+
       expect(button.attributes('disabled')).toBeUndefined();
     });
 
@@ -55,6 +58,7 @@ describe('Button', () => {
       });
 
       const button = wrapper.find('button');
+
       expect(button.attributes('disabled')).toBeUndefined();
     });
 
@@ -69,6 +73,7 @@ describe('Button', () => {
       });
 
       const button = wrapper.find('button');
+
       expect(button.attributes('disabled')).toBeDefined();
     });
   });
