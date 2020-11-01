@@ -19,6 +19,7 @@
         { value: 'L', disabled: true },
       ]"
     />
+    <list :stations="stations" :selected-station="selectedStation" :on-station-select="baz" />
   </div>
   <div class="w-16 bg-gray-500">Test</div>
 </template>
@@ -26,16 +27,33 @@
 <script>
 import Keyboard from './app/components/keyboard/keyboard.vue';
 import UserInput from './app/components/user-input/user-input.vue';
+import List from './app/components/list/list.vue';
 
 export default {
   name: 'App',
   components: {
     Keyboard,
     UserInput,
+    List,
   },
   data() {
     return {
       inputValue: '',
+      selectedStation: null,
+      stations: [
+        {
+          code: 'DFD',
+          name: 'Dartford',
+        },
+        {
+          code: 'FOK',
+          name: 'Four Oaks',
+        },
+        {
+          code: 'PAD',
+          name: 'London Paddington',
+        },
+      ],
     };
   },
   methods: {
@@ -45,6 +63,10 @@ export default {
     },
     bar(v) {
       console.log(v, 'v');
+    },
+    baz(code) {
+      console.log(code, 'code');
+      this.selectedStation = code;
     },
   },
 };
