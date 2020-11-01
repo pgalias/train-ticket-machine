@@ -8,6 +8,7 @@ describe('LocalStorage', () => {
 
   afterEach(() => {
     localStorage.clear();
+    jest.restoreAllMocks();
   });
 
   test.each(['foo', 2, false, [1, 4, 8], { a: 'b' }])(
@@ -19,9 +20,11 @@ describe('LocalStorage', () => {
   );
 
   test('should be able to save value to storage', () => {
-    expect(locStorage.get('key')).toBeNull();
-    localStorage.setItem('key', JSON.stringify('value'));
-    expect(locStorage.get('key')).not.toBeNull();
+    const mock = jest.fn();
+    jest.spyOn(window.localStorage.__proto__, 'setItem').mockImplementation(mock);
+
+    locStorage.set('key', 'value');
+    expect(mock).toHaveBeenCalled();
   });
 
   test('should be able to clear storage', () => {
