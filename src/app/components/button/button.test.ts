@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Button from './Button.vue';
+import Button from './button.vue';
 
 describe('Button', () => {
   test('should render button', () => {

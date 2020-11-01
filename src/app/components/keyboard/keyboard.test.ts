@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import Keyboard from './Keyboard.vue';
+import Keyboard from './keyboard.vue';
 
 describe('Keyboard', () => {
   const symbols = [{ value: 'A', disabled: false }, { value: 'B' }, { value: 'C', disabled: true }];
