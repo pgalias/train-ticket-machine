@@ -1,31 +1,32 @@
 .station {
-    @apply items-center gap-3 cursor-pointer my-4;
-    display: grid;
-    grid-template-columns: 2rem auto;
+  @apply items-center gap-3 cursor-pointer my-4;
+
+  display: grid;
+  grid-template-columns: 2rem auto;
 }
 
 .station__indicator-outer {
-    @apply flex justify-center items-center;
-    @apply border-teal-500 border-2 rounded-full;
-    @apply h-8 w-8;
+  @apply flex justify-center items-center;
+  @apply border-teal-500 border-2 rounded-full;
+  @apply h-8 w-8;
 }
 
 .station__indicator-inner {
-    @apply bg-teal-500 h-4 w-4 rounded-full;
+  @apply bg-teal-500 h-4 w-4 rounded-full;
 }
 
 .station:not(.selected) .station__indicator-inner {
-    @apply bg-opacity-0;
+  @apply bg-opacity-0;
 }
 
 .station:not(.selected):hover .station__indicator-inner {
-    @apply bg-opacity-50;
+  @apply bg-opacity-50;
 }
 
 .station__name {
-    @apply text-lg text-left truncate flex-grow;
+  @apply text-lg text-left truncate flex-grow;
 }
 
 .station.selected .station__name {
-    @apply text-teal-500;
+  @apply text-teal-500;
 }

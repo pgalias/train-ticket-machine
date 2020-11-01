@@ -56,7 +56,7 @@
     "*.{ts,tsx,vue}": [
       "yarn lint:scripts"
     ],
-    "*.{css}": [
+    "*.css": [
       "yarn lint:styles"
     ]
   }
