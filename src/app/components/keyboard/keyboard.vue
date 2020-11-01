@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { isNil } from 'lodash-es';
-import Button from '../button/Button.vue';
+import Button from '../button/button.vue';
 import { default as IButton } from '../button/button';
 
 export default {
