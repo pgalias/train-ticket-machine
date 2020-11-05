@@ -28,6 +28,7 @@
 import Keyboard from './app/components/keyboard/keyboard.vue';
 import UserInput from './app/components/user-input/user-input.vue';
 import List from './app/components/list/list.vue';
+import LocalStorage from './infrastructure/cache/local-storage';
 
 export default {
   name: 'App',
@@ -35,6 +36,11 @@ export default {
     Keyboard,
     UserInput,
     List,
+  },
+  provide() {
+    return {
+      cache: new LocalStorage(),
+    };
   },
   data() {
     return {
