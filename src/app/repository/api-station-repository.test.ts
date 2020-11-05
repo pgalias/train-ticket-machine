@@ -18,7 +18,17 @@ describe('ApiStationRepository', () => {
   });
 
   test('should fetch data from endpoint and save results into cache', async () => {
-    const list: Station[] = [
+    const responseStations = [
+      {
+        stationCode: 'PZN',
+        stationName: 'Poznan',
+      },
+      {
+        stationCode: 'WAW',
+        stationName: 'Warsaw',
+      },
+    ];
+    const expectedStations: Station[] = [
       {
         code: 'PZN',
         name: 'Poznan',
@@ -31,11 +41,11 @@ describe('ApiStationRepository', () => {
 
     (window.fetch as jest.Mock) = jest.fn(() =>
       Promise.resolve({
-        json: () => Promise.resolve(list),
+        json: () => Promise.resolve(responseStations),
       }),
     );
 
-    expect(await repository.fetch()).toEqual(list);
-    expect(cache.set).toHaveBeenCalledWith(STATIONS_CACHE_KEY, list);
+    expect(await repository.fetch()).toEqual(expectedStations);
+    expect(cache.set).toHaveBeenCalledWith(STATIONS_CACHE_KEY, expectedStations);
   });
 });
