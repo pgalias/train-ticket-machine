@@ -1,8 +1,8 @@
 import ApiStationRepository from './api-station-repository';
-import Cache from '../../infrastructure/cache/cache';
-import { cacheMock } from '../../infrastructure/testUtils';
-import { STATIONS_CACHE_KEY } from '../../infrastructure/constants';
-import Station from '../../domain/model/station';
+import Cache from '../../../infrastructure/cache/cache';
+import { cacheMock } from '../../../infrastructure/testUtils';
+import { STATIONS_CACHE_KEY } from '../../../infrastructure/constants';
+import Station from '../../../domain/model/station';
 
 describe('ApiStationRepository', () => {
   let cache: Cache;

@@ -1,5 +1,5 @@
-import StationRepository from '../../domain/repository/station-repository';
-import Station from '../../domain/model/station';
+import StationRepository from '../../../domain/repository/station-repository';
+import Station from '../../../domain/model/station';
 
 export default class AggregateStationRepository implements StationRepository {
   constructor(private repositories: StationRepository[]) {}

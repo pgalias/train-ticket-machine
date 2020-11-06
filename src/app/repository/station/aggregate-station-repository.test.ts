@@ -1,7 +1,7 @@
 import { AggregateStationRepository, ApiStationRepository, InMemoryStationRepository } from '.';
-import Cache from '../../infrastructure/cache/cache';
-import { cacheMock } from '../../infrastructure/testUtils';
-import Station from '../../domain/model/station';
+import Cache from '../../../infrastructure/cache/cache';
+import { cacheMock } from '../../../infrastructure/testUtils';
+import Station from '../../../domain/model/station';
 
 describe('AggregateStationRepository', () => {
   const list: Station[] = [

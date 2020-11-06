@@ -1,7 +1,7 @@
 import InMemoryStationRepository from './in-memory-station-repository';
-import Cache from '../../infrastructure/cache/cache';
-import { cacheMock } from '../../infrastructure/testUtils';
-import Station from '../../domain/model/station';
+import Cache from '../../../infrastructure/cache/cache';
+import { cacheMock } from '../../../infrastructure/testUtils';
+import Station from '../../../domain/model/station';
 
 describe('InMemoryStationRepository', () => {
   let cache: Cache;
