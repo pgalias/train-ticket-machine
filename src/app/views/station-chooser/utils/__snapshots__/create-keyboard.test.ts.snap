@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createKeyboard should return array of keyboard rows (as arrays) 1`] = `
+Array [
+  Array [
+    Object {
+      "modelValue": "Q",
+    },
+    Object {
+      "modelValue": "W",
+    },
+    Object {
+      "modelValue": "E",
+    },
+    Object {
+      "modelValue": "R",
+    },
+    Object {
+      "modelValue": "T",
+    },
+    Object {
+      "modelValue": "Y",
+    },
+    Object {
+      "modelValue": "U",
+    },
+    Object {
+      "modelValue": "I",
+    },
+    Object {
+      "modelValue": "O",
+    },
+    Object {
+      "modelValue": "P",
+    },
+  ],
+  Array [
+    Object {
+      "modelValue": "A",
+    },
+    Object {
+      "modelValue": "S",
+    },
+    Object {
+      "modelValue": "D",
+    },
+    Object {
+      "modelValue": "F",
+    },
+    Object {
+      "modelValue": "G",
+    },
+    Object {
+      "modelValue": "H",
+    },
+    Object {
+      "modelValue": "J",
+    },
+    Object {
+      "modelValue": "K",
+    },
+    Object {
+      "modelValue": "L",
+    },
+  ],
+  Array [
+    Object {
+      "modelValue": "Z",
+    },
+    Object {
+      "modelValue": "X",
+    },
+    Object {
+      "modelValue": "C",
+    },
+    Object {
+      "modelValue": "V",
+    },
+    Object {
+      "modelValue": "B",
+    },
+    Object {
+      "modelValue": "N",
+    },
+    Object {
+      "modelValue": "M",
+    },
+  ],
+  Array [
+    Object {
+      "modelValue": "[space]",
+      "size": "lg",
+      "viewValue": " ",
+    },
+    Object {
+      "modelValue": "[backspace]",
+      "size": "md",
+      "viewValue": <img src="" alt="backspace icon" style="height:100%;width:100%;" />,
+    },
+  ],
+]
+`;
