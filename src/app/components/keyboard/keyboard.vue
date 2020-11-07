@@ -2,8 +2,8 @@
   <div v-for="(buttonSet, index) of buttonsSets" :key="index">
     <div class="flex justify-center">
       <Button
-        v-for="({ modelValue, viewValue, disabled, size }, index) in buttonSet"
-        :key="index"
+        v-for="{ modelValue, viewValue, disabled, size } in buttonSet"
+        :key="modelValue"
         :model-value="modelValue"
         :view-value="viewValue"
         :on-click="onClick"

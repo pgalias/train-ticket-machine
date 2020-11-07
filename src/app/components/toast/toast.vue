@@ -1,5 +1,7 @@
 <template>
-  <div v-if="validate && visible" class="toast" :class="{ [type]: true }">{{ message }}</div>
+  <teleport to="#alert">
+    <div v-if="validate && visible" class="toast" :class="{ [type]: true }">{{ message }}</div>
+  </teleport>
 </template>
 
 <script>
