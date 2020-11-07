@@ -1,0 +1,7 @@
+.keyboard-container {
+  @apply fixed bottom-0 right-0 left-0 bg-blue-800 py-2;
+}
+
+.list-container {
+  @apply pb-40;
+}

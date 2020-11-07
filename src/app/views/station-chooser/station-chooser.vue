@@ -5,17 +5,14 @@
     message="Error occurred during resolving available stations. Try again"
   />
   <loader v-if="state === 'loading'" />
-  <div>
-    <div>
+  <div v-if="state === 'success'">
+    <div class="container list-container">
+      <list :stations="visibleStations" :selected-station="selectedStation" :on-station-select="onStationSelect" />
+    </div>
+    <div class="container keyboard-container">
       <user-input :value="keyboardInput" />
       <keyboard :buttons-sets="keyboardButtons" :on-click="onKeyboardButtonClick" />
     </div>
-    <list
-      v-if="state === 'success'"
-      :stations="visibleStations"
-      :selected-station="selectedStation"
-      :on-station-select="onStationSelect"
-    />
   </div>
 </template>
 
@@ -28,6 +25,8 @@ import Toast from '../../components/toast/toast.vue';
 import UserInput from '../../components/user-input/user-input.vue';
 import Keyboard from '../../components/keyboard/keyboard.vue';
 import Station from '../../../domain/model/station';
+
+import './station-chooser.css';
 
 export default {
   name: 'StationChooser',
@@ -70,6 +69,7 @@ export default {
       this.visibleStations = this.stationsCollection.filter((station: Station) =>
         station.name.toLowerCase().startsWith(this.keyboardInput.toLowerCase()),
       );
+      document.querySelector('.list').scrollIntoView();
     },
   },
 };

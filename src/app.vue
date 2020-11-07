@@ -1,7 +1,5 @@
 <template>
-  <div class="container">
-    <station-chooser />
-  </div>
+  <station-chooser />
 </template>
 
 <script>
