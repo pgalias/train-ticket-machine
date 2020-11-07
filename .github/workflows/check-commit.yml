@@ -16,5 +16,5 @@ jobs:
         run: yarn test
       - name: Deploy to Github Pages
         run: |
-          git config user.name pgalias && git conifg user.email pawel@galias.me
+          git config user.name pgalias && git config user.email pawel@galias.me
           yarn deploy
