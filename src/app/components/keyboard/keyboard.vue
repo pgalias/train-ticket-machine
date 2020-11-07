@@ -1,12 +1,16 @@
 <template>
-  <div class="container flex flex-wrap justify-center">
-    <Button
-      v-for="(symbol, index) in symbols"
-      :key="index"
-      :value="symbol.value"
-      :on-click="onClick"
-      :disabled="symbol.disabled"
-    />
+  <div v-for="(buttonSet, index) of buttonsSets" :key="index">
+    <div class="flex justify-center">
+      <Button
+        v-for="({ modelValue, viewValue, disabled, size }, index) in buttonSet"
+        :key="index"
+        :model-value="modelValue"
+        :view-value="viewValue"
+        :on-click="onClick"
+        :disabled="disabled"
+        :size="size"
+      />
+    </div>
   </div>
 </template>
 
@@ -23,11 +27,11 @@ export default {
       type: Function,
       required: true,
     },
-    symbols: {
+    buttonsSets: {
       type: Object,
       required: true,
-      validator: function (symbols: IButton[]) {
-        return symbols.length > 0 && symbols.every(({ value }) => !isNil(value));
+      validator: function (buttonSets: Array<IButton[]>) {
+        return buttonSets.length > 0 && buttonSets.flat().every(({ modelValue }) => !isNil(modelValue));
       },
     },
   },

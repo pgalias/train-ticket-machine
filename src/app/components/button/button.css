@@ -1,5 +1,5 @@
 .btn {
-  @apply h-10 w-10 m-1;
+  @apply h-5 w-5 m-1;
   @apply text-xs text-white font-semibold;
   @apply rounded shadow-md;
   @apply bg-blue-500 bg-opacity-50;
@@ -16,4 +16,12 @@
 .btn.disabled,
 .btn[disabled] {
   @apply bg-gray-400 cursor-not-allowed;
+}
+
+.btn-md {
+  @apply w-10;
+}
+
+.btn-lg {
+  @apply w-1/2;
 }

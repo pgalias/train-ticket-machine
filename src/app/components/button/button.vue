@@ -1,6 +1,6 @@
 <template>
-  <button @click="click" :disabled="disabled" class="btn">
-    {{ value }}
+  <button @click="click" :disabled="disabled" class="btn" :class="{ [`btn-${size}`]: ['md', 'lg'].includes(size) }">
+    <span v-html="viewValue ?? modelValue"></span>
   </button>
 </template>
 
@@ -10,13 +10,15 @@ import './button.css';
 export default {
   name: 'Button',
   props: {
-    value: { type: String, required: true },
+    modelValue: { type: String, required: true },
     onClick: { type: Function, required: true },
     disabled: { type: Boolean, default: false },
+    viewValue: { type: String },
+    size: { type: String },
   },
   methods: {
     click() {
-      this.onClick(this.value);
+      this.onClick(this.modelValue);
     },
   },
 };

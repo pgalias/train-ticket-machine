@@ -6,7 +6,7 @@ describe('Button', () => {
     // @ts-ignore
     const wrapper = shallowMount(Button, {
       propsData: {
-        value: 'foo',
+        modelValue: 'foo',
         onClick: jest.fn(),
       },
     });
@@ -22,7 +22,7 @@ describe('Button', () => {
     const wrapper = shallowMount(Button, {
       propsData: {
         onClick,
-        value: 'foo',
+        modelValue: 'foo',
       },
     });
 
@@ -37,7 +37,7 @@ describe('Button', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
         propsData: {
-          value: 'foo',
+          modelValue: 'foo',
           onClick: jest.fn(),
           disabled: false,
         },
@@ -52,7 +52,7 @@ describe('Button', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
         propsData: {
-          value: 'foo',
+          modelValue: 'foo',
           onClick: jest.fn(),
         },
       });
@@ -66,7 +66,7 @@ describe('Button', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
         propsData: {
-          value: 'foo',
+          modelValue: 'foo',
           onClick: jest.fn(),
           disabled: true,
         },
@@ -75,6 +75,69 @@ describe('Button', () => {
       const button = wrapper.find('button');
 
       expect(button.attributes('disabled')).toBeDefined();
+    });
+
+    describe('button inner text', () => {
+      test('should put viewValue as text when is passed', () => {
+        // @ts-ignore
+        const wrapper = shallowMount(Button, {
+          propsData: {
+            modelValue: 'foo',
+            viewValue: 'bar',
+            onClick: jest.fn(),
+          },
+        });
+
+        const button = wrapper.find('button');
+
+        expect(button.text()).toBe('bar');
+      });
+
+      test('should put modelValue as text when viewValue is not passed', () => {
+        // @ts-ignore
+        const wrapper = shallowMount(Button, {
+          propsData: {
+            modelValue: 'foo',
+            onClick: jest.fn(),
+          },
+        });
+
+        const button = wrapper.find('button');
+
+        expect(button.text()).toBe('foo');
+      });
+    });
+
+    describe('button size', () => {
+      test.each(['md', 'lg'])('should add btn-%s class when passed with size prop', (size) => {
+        // @ts-ignore
+        const wrapper = shallowMount(Button, {
+          propsData: {
+            size,
+            modelValue: 'foo',
+            onClick: jest.fn(),
+          },
+        });
+
+        const button = wrapper.find('button');
+
+        expect(button.classes().includes(`btn-${size}`)).toBeTruthy();
+      });
+
+      test('should not add additional class when size prop is not passed', () => {
+        // @ts-ignore
+        const wrapper = shallowMount(Button, {
+          propsData: {
+            modelValue: 'foo',
+            onClick: jest.fn(),
+          },
+        });
+
+        const button = wrapper.find('button');
+
+        expect(button.classes()).toHaveLength(1);
+        expect(button.classes()[0]).toEqual('btn');
+      });
     });
   });
 });

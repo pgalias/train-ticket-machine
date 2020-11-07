@@ -2,13 +2,16 @@ import { shallowMount } from '@vue/test-utils';
 import Keyboard from './keyboard.vue';
 
 describe('Keyboard', () => {
-  const symbols = [{ value: 'A', disabled: false }, { value: 'B' }, { value: 'C', disabled: true }];
+  const buttonsSets = [
+    [{ modelValue: 'A', disabled: false }, { modelValue: 'B' }],
+    [{ modelValue: 'C', disabled: true }],
+  ];
 
   test('should render keyboard with passed buttons', () => {
     // @ts-ignore
     const wrapper = shallowMount(Keyboard, {
       propsData: {
-        symbols,
+        buttonsSets,
         onClick: jest.fn(),
       },
     });
@@ -22,7 +25,7 @@ describe('Keyboard', () => {
     // @ts-ignore
     const wrapper = shallowMount(Keyboard, {
       propsData: {
-        symbols: [],
+        buttonsSets: [],
         onClick: jest.fn(),
       },
     });
