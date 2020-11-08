@@ -7,17 +7,25 @@
   <loader v-if="state === 'loading'" />
   <div v-if="state === 'success'">
     <div class="container list-container">
-      <list :stations="visibleStations" :selected-station="selectedStation" :on-station-select="onStationSelect" />
+      <list
+        v-if="visibleStations.length"
+        :stations="visibleStations"
+        :selected-station="selectedStation"
+        :on-station-select="onStationSelect"
+      />
+      <p v-if="visibleStations.length === 0">No result found</p>
     </div>
-    <div class="container keyboard-container">
-      <user-input :value="keyboardInput" />
-      <keyboard :buttons-sets="keyboardButtons" :on-click="onKeyboardButtonClick" />
+    <div class="keyboard-container">
+      <div class="container">
+        <user-input :value="keyboardInput" />
+        <keyboard :buttons-sets="keyboardButtons" :on-click="onKeyboardButtonClick" />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import createKeyboard from './utils/create-keyboard';
+import { createKeyboard, keyboardDisabler, handleInput } from './utils';
 import List from '../../components/list/list.vue';
 import { AggregateStationRepository, ApiStationRepository, InMemoryStationRepository } from '../../repository/station';
 import Loader from '../../components/loader/loader.vue';
@@ -51,6 +59,9 @@ export default {
     try {
       this.stationsCollection = await aggregateRepository.fetch();
       this.visibleStations = this.stationsCollection;
+      this.keyboardButtons = this.keyboardButtons.map(
+        keyboardDisabler(this.keyboardInput.length, this.visibleStations),
+      );
       this.state = 'success';
     } catch {
       this.state = 'error';
@@ -61,15 +72,17 @@ export default {
       this.selectedStation = code;
     },
     onKeyboardButtonClick(value: string) {
-      if (value === '[backspace]') {
-        this.keyboardInput = this.keyboardInput.slice(0, -1);
-      } else {
-        this.keyboardInput += value === '[space]' ? ' ' : value;
-      }
+      this.keyboardInput = handleInput(this.keyboardInput, value);
       this.visibleStations = this.stationsCollection.filter((station: Station) =>
         station.name.toLowerCase().startsWith(this.keyboardInput.toLowerCase()),
       );
-      document.querySelector('.list').scrollIntoView();
+      this.keyboardButtons = this.keyboardButtons.map(
+        keyboardDisabler(this.keyboardInput.length, this.visibleStations),
+      );
+      this.scrollToTop();
+    },
+    scrollToTop() {
+      document.querySelector('.list')?.scrollIntoView();
     },
   },
 };
