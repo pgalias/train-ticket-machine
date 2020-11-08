@@ -5,20 +5,25 @@
 </template>
 
 <script>
+import { isString } from 'lodash-es';
 import './button.css';
 
 export default {
   name: 'Button',
+  emits: {
+    'button-click'(payload) {
+      return isString(payload);
+    },
+  },
   props: {
     modelValue: { type: String, required: true },
-    onClick: { type: Function, required: true },
     disabled: { type: Boolean, default: false },
     viewValue: { type: String },
     size: { type: String },
   },
   methods: {
     click() {
-      this.onClick(this.modelValue);
+      this.$emit('button-click', this.modelValue);
     },
   },
 };

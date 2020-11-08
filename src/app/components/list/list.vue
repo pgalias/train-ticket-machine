@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+import { isString } from 'lodash-es';
 import { collectionValidator } from '../../../infrastructure/validators';
 import { stationValidator } from '../../../domain/validator';
 import Station from '../../../domain/model/station';
@@ -26,6 +27,11 @@ import './list.css';
 
 export default {
   name: 'List',
+  emits: {
+    'station-select'(payload) {
+      return isString(payload);
+    },
+  },
   props: {
     stations: {
       validate(stations: Station[]) {
@@ -36,14 +42,13 @@ export default {
       type: String,
       default: null,
     },
-    onStationSelect: {
-      type: Function,
-      required: true,
-    },
   },
   methods: {
     areStationsValid(stations: Station[]) {
       return collectionValidator(stations, stationValidator);
+    },
+    onStationSelect(code: string) {
+      this.$emit('station-select', code);
     },
   },
 };

@@ -5,10 +5,7 @@ describe('Button', () => {
   test('should render button', () => {
     // @ts-ignore
     const wrapper = shallowMount(Button, {
-      propsData: {
-        modelValue: 'foo',
-        onClick: jest.fn(),
-      },
+      propsData: { modelValue: 'foo' },
     });
 
     const button = wrapper.find('button');
@@ -16,31 +13,25 @@ describe('Button', () => {
     expect(button.text()).toBe('foo');
   });
 
-  test('should call passed onClick callback when button was clicked', async () => {
-    const onClick = jest.fn();
+  test('should emit event when button was clicked', async () => {
     // @ts-ignore
     const wrapper = shallowMount(Button, {
-      propsData: {
-        onClick,
-        modelValue: 'foo',
-      },
+      propsData: { modelValue: 'foo' },
     });
 
     const button = wrapper.find('button');
-    await button.trigger('click');
 
-    expect(onClick).toHaveBeenCalledWith('foo');
+    await button.trigger('click');
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.emitted('button-click')[0]).toEqual(['foo']);
   });
 
   describe('disabled prop', () => {
     test('should render not disabled button when disabled prop is false', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
-        propsData: {
-          modelValue: 'foo',
-          onClick: jest.fn(),
-          disabled: false,
-        },
+        propsData: { modelValue: 'foo', disabled: false },
       });
 
       const button = wrapper.find('button');
@@ -51,10 +42,7 @@ describe('Button', () => {
     test('should render not disabled button when disabled prop is not passed', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
-        propsData: {
-          modelValue: 'foo',
-          onClick: jest.fn(),
-        },
+        propsData: { modelValue: 'foo' },
       });
 
       const button = wrapper.find('button');
@@ -65,11 +53,7 @@ describe('Button', () => {
     test('should render disabled button when disabled prop is true', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
-        propsData: {
-          modelValue: 'foo',
-          onClick: jest.fn(),
-          disabled: true,
-        },
+        propsData: { modelValue: 'foo', disabled: true },
       });
 
       const button = wrapper.find('button');
@@ -81,11 +65,7 @@ describe('Button', () => {
       test('should put viewValue as text when is passed', () => {
         // @ts-ignore
         const wrapper = shallowMount(Button, {
-          propsData: {
-            modelValue: 'foo',
-            viewValue: 'bar',
-            onClick: jest.fn(),
-          },
+          propsData: { modelValue: 'foo', viewValue: 'bar' },
         });
 
         const button = wrapper.find('button');
@@ -96,10 +76,7 @@ describe('Button', () => {
       test('should put modelValue as text when viewValue is not passed', () => {
         // @ts-ignore
         const wrapper = shallowMount(Button, {
-          propsData: {
-            modelValue: 'foo',
-            onClick: jest.fn(),
-          },
+          propsData: { modelValue: 'foo' },
         });
 
         const button = wrapper.find('button');
@@ -112,11 +89,7 @@ describe('Button', () => {
       test.each(['md', 'lg'])('should add btn-%s class when passed with size prop', (size) => {
         // @ts-ignore
         const wrapper = shallowMount(Button, {
-          propsData: {
-            size,
-            modelValue: 'foo',
-            onClick: jest.fn(),
-          },
+          propsData: { size, modelValue: 'foo' },
         });
 
         const button = wrapper.find('button');
@@ -127,10 +100,7 @@ describe('Button', () => {
       test('should not add additional class when size prop is not passed', () => {
         // @ts-ignore
         const wrapper = shallowMount(Button, {
-          propsData: {
-            modelValue: 'foo',
-            onClick: jest.fn(),
-          },
+          propsData: { modelValue: 'foo' },
         });
 
         const button = wrapper.find('button');

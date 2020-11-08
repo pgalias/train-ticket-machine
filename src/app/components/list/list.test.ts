@@ -22,10 +22,7 @@ describe('List', () => {
     test('should render list from passed station list', () => {
       // @ts-ignore
       const wrapper = shallowMount(List, {
-        propsData: {
-          stations,
-          onStationSelect: jest.fn(),
-        },
+        propsData: { stations },
       });
 
       const renderedStations = wrapper.findAll('.station');
@@ -38,11 +35,7 @@ describe('List', () => {
 
     test('should not render when stations list was not passed', () => {
       // @ts-ignore
-      const wrapper = shallowMount(List, {
-        propsData: {
-          onStationSelect: jest.fn(),
-        },
-      });
+      const wrapper = shallowMount(List);
 
       const renderedStations = wrapper.findAll('.station');
       expect(renderedStations).toHaveLength(0);
@@ -51,10 +44,7 @@ describe('List', () => {
     test('should not render when passed stations are incorrect', () => {
       // @ts-ignore
       const wrapper = shallowMount(List, {
-        propsData: {
-          onStationSelect: jest.fn(),
-          stations: [{ foo: 'bar' }],
-        },
+        propsData: { stations: [{ foo: 'bar' }] },
       });
 
       const renderedStations = wrapper.findAll('.station');
@@ -62,32 +52,24 @@ describe('List', () => {
     });
   });
 
-  test('should fire callback on station click', async () => {
-    const onStationSelect = jest.fn();
-
+  test('should emit event on station click', async () => {
     // @ts-ignore
     const wrapper = shallowMount(List, {
-      propsData: {
-        stations,
-        onStationSelect,
-      },
+      propsData: { stations },
     });
 
     const renderedStations = wrapper.findAll('.station');
 
     await renderedStations[1].trigger('click');
+    await wrapper.vm.$nextTick();
 
-    expect(onStationSelect).toHaveBeenCalledWith('FOK');
+    expect(wrapper.emitted('station-select')[0]).toEqual(['FOK']);
   });
 
   test('should select right station when selectedStation prop is present', () => {
     // @ts-ignore
     const wrapper = shallowMount(List, {
-      propsData: {
-        stations,
-        selectedStation: 'PAD',
-        onStationSelect: jest.fn(),
-      },
+      propsData: { stations, selectedStation: 'PAD' },
     });
 
     const renderedStations = wrapper.findAll('.station');
@@ -108,10 +90,7 @@ describe('List', () => {
   `('should stations prop ($collection) validator should work and return $isValid', ({ collection, isValid }) => {
     // @ts-ignore
     const wrapper = mount(List, {
-      propsData: {
-        onStationSelect: jest.fn(),
-        stations: [{ foo: 'bar' }],
-      },
+      propsData: { stations: [{ foo: 'bar' }] },
     });
 
     const { validate } = wrapper.vm.$options.props.stations;

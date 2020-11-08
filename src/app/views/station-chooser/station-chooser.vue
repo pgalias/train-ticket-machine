@@ -11,14 +11,14 @@
         v-if="visibleStations.length"
         :stations="visibleStations"
         :selected-station="selectedStation"
-        :on-station-select="onStationSelect"
+        @station-select="onStationSelect"
       />
-      <p v-if="visibleStations.length === 0">No result found</p>
+      <no-results v-if="visibleStations.length === 0" />
     </div>
     <div class="keyboard-container">
       <div class="container">
         <user-input :value="keyboardInput" />
-        <keyboard :buttons-sets="keyboardButtons" :on-click="onKeyboardButtonClick" />
+        <keyboard :buttons-sets="keyboardButtons" @keyboard-click="onKeyboardButtonClick" />
       </div>
     </div>
   </div>
@@ -33,12 +33,13 @@ import Toast from '../../components/toast/toast.vue';
 import UserInput from '../../components/user-input/user-input.vue';
 import Keyboard from '../../components/keyboard/keyboard.vue';
 import Station from '../../../domain/model/station';
+import NoResults from '../../components/no-results/no-results.vue';
 
 import './station-chooser.css';
 
 export default {
   name: 'StationChooser',
-  components: { Keyboard, UserInput, Toast, Loader, List },
+  components: { NoResults, Keyboard, UserInput, Toast, Loader, List },
   data() {
     return {
       state: 'none',

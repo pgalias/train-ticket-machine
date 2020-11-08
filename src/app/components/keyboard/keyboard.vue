@@ -6,27 +6,28 @@
         :key="modelValue"
         :model-value="modelValue"
         :view-value="viewValue"
-        :on-click="onClick"
         :disabled="disabled"
         :size="size"
+        @button-click="onButtonClick"
       />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { isNil } from 'lodash-es';
+import { isNil, isString } from 'lodash-es';
 import Button from '../button/button.vue';
 import { default as IButton } from '../button/button';
 
 export default {
   name: 'Keyboard',
   components: { Button },
-  props: {
-    onClick: {
-      type: Function,
-      required: true,
+  emits: {
+    'keyboard-click'(payload) {
+      return isString(payload);
     },
+  },
+  props: {
     buttonsSets: {
       type: Object,
       required: true,
@@ -35,7 +36,10 @@ export default {
       },
     },
   },
+  methods: {
+    onButtonClick(value: string) {
+      this.$emit('keyboard-click', value);
+    },
+  },
 };
 </script>
-
-<style scoped></style>
