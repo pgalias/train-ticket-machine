@@ -1,5 +1,5 @@
 <template>
-  <button @click="click" :disabled="disabled" class="btn" :class="{ [`btn-${size}`]: ['md', 'lg'].includes(size) }">
+  <button @click="click" class="btn" :class="{ [`btn-${size}`]: ['md', 'lg'].includes(size), disabled }">
     <span v-html="viewValue ?? modelValue"></span>
   </button>
 </template>

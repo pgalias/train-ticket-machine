@@ -17,17 +17,16 @@
   }
 }
 
-.btn:enabled:hover {
+.btn:not(.disabled):hover {
   @apply shadow-sm;
 }
 
-.btn:enabled:focus {
+.btn:not(.disabled):focus {
   @apply outline-white;
 }
 
-.btn.disabled,
-.btn[disabled] {
-  @apply bg-gray-400 cursor-not-allowed;
+.btn.disabled {
+  @apply bg-gray-400;
 }
 
 .btn-md {

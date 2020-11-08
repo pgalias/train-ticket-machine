@@ -28,7 +28,7 @@ describe('Button', () => {
   });
 
   describe('disabled prop', () => {
-    test('should render not disabled button when disabled prop is false', () => {
+    test('should render enabled button when disabled prop is false', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
         propsData: { modelValue: 'foo', disabled: false },
@@ -36,10 +36,10 @@ describe('Button', () => {
 
       const button = wrapper.find('button');
 
-      expect(button.attributes('disabled')).toBeUndefined();
+      expect(button.classes('disabled')).toBeFalsy();
     });
 
-    test('should render not disabled button when disabled prop is not passed', () => {
+    test('should render enabled button when disabled prop is not passed', () => {
       // @ts-ignore
       const wrapper = shallowMount(Button, {
         propsData: { modelValue: 'foo' },
@@ -47,7 +47,7 @@ describe('Button', () => {
 
       const button = wrapper.find('button');
 
-      expect(button.attributes('disabled')).toBeUndefined();
+      expect(button.classes('disabled')).toBeFalsy();
     });
 
     test('should render disabled button when disabled prop is true', () => {
@@ -58,7 +58,7 @@ describe('Button', () => {
 
       const button = wrapper.find('button');
 
-      expect(button.attributes('disabled')).toBeDefined();
+      expect(button.classes('disabled')).toBeTruthy();
     });
 
     describe('button inner text', () => {
