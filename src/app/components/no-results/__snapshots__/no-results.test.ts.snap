@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoResults should render component with default message when message prop was not passed 1`] = `<p class="no-results">No results found <img class="emoji" alt="sad face emoji"></p>`;
+
+exports[`NoResults should render component with message without emoji when showEmoji prop is false 1`] = `
+<p class="no-results">Not any foo found
+  <!--v-if-->
+</p>
+`;
+
+exports[`NoResults should render component with passed message 1`] = `<p class="no-results">Not any foo found <img class="emoji" alt="sad face emoji"></p>`;

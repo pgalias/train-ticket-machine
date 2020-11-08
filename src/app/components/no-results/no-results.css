@@ -1,0 +1,7 @@
+.no-results {
+  @apply text-xl mt-5;
+}
+
+.no-results .emoji {
+  @apply w-8 inline;
+}
