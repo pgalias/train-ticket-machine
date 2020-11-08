@@ -5,6 +5,18 @@
   @apply bg-blue-500 bg-opacity-50;
 }
 
+@screen sm {
+  .btn {
+    @apply h-6 w-6 my-1 mx-2;
+  }
+}
+
+@screen lg {
+  .btn {
+    @apply h-10 w-10;
+  }
+}
+
 .btn:enabled:hover {
   @apply shadow-sm;
 }
@@ -20,6 +32,12 @@
 
 .btn-md {
   @apply w-10;
+}
+
+@screen lg {
+  .btn-md {
+    @apply w-16;
+  }
 }
 
 .btn-lg {
