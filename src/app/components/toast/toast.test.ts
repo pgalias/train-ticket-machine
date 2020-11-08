@@ -18,7 +18,7 @@ describe('Toast', () => {
     const toast = document.querySelector('.toast');
 
     expect(toast?.classList.contains(type)).toBeTruthy();
-    expect(toast?.textContent).toEqual(message);
+    expect(toast?.textContent).toContain(message);
 
     wrapper.unmount();
   });
@@ -26,11 +26,7 @@ describe('Toast', () => {
   test('should not render toast when incorrect type passed', () => {
     // @ts-ignore
     const wrapper = mount(Toast, {
-      propsData: {
-        message: 'Foo',
-        type: 'Bar',
-      },
-      // attachTo: div,
+      propsData: { message: 'Foo', type: 'Bar' },
     });
 
     expect(wrapper.findAll('.toast')).toHaveLength(0);
@@ -40,11 +36,7 @@ describe('Toast', () => {
     jest.useFakeTimers();
     // @ts-ignore
     const wrapper = mount(Toast, {
-      propsData: {
-        message: 'Foo',
-        type: 'success',
-        delay: 1000,
-      },
+      propsData: { message: 'Foo', type: 'success', delay: 1000 },
     });
 
     expect((wrapper.vm.$data as { visible: boolean }).visible).toBeTruthy();
@@ -53,4 +45,34 @@ describe('Toast', () => {
 
     jest.clearAllTimers();
   });
+
+  test('should hide toast on close button click', async () => {
+    const alert = document.createElement('div');
+    alert.id = 'alert';
+    document.body.appendChild(alert);
+    // @ts-ignore
+    const wrapper = mount(Toast, {
+      propsData: { message: 'Foo', type: 'success' },
+    });
+
+    const close = document.querySelector('.toast-close');
+    await close?.dispatchEvent(new Event('click'));
+
+    expect((wrapper.vm.$data as { visible: boolean }).visible).toBeFalsy();
+  });
+
+  test.each(['success', 'warning', 'danger'])(
+    'should not show emoji for %s toast when showEmoji prop is falsy',
+    (type) => {
+      const alert = document.createElement('div');
+      alert.id = 'alert';
+      document.body.appendChild(alert);
+      // @ts-ignore
+      mount(Toast, {
+        propsData: { type, message: 'Foo', showEmoji: false },
+      });
+
+      expect(document.querySelector('.emoji')).toBeNull();
+    },
+  );
 });

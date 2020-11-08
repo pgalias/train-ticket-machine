@@ -1,6 +1,12 @@
 <template>
   <teleport to="#alert">
-    <div v-if="validate && visible" class="toast" :class="{ [type]: true }">{{ message }}</div>
+    <div v-if="validate && visible" class="toast" :class="{ [type]: true }">
+      <img v-if="showEmoji && type === 'success'" class="emoji" src="../../../assets/smile.svg" alt="success emoji" />
+      <img v-if="showEmoji && type === 'warning'" class="emoji" src="../../../assets/neutral.svg" alt="warning emoji" />
+      <img v-if="showEmoji && type === 'danger'" class="emoji" src="../../../assets/sad.svg" alt="danger emoji" />
+      <p class="toast-message">{{ message }}</p>
+      <button @click="close" class="toast-close" role="button">&times;</button>
+    </div>
   </teleport>
 </template>
 
@@ -18,7 +24,7 @@ export default {
   },
   created() {
     setTimeout(() => {
-      this.visible = false;
+      this.close();
     }, this.delay);
   },
   props: {
@@ -35,6 +41,10 @@ export default {
       type: Number,
       default: TOAST_DELAY_MS,
     },
+    showEmoji: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     validate() {
@@ -44,6 +54,9 @@ export default {
   methods: {
     isCorrectType() {
       return ['success', 'warning', 'danger'].includes(this.type);
+    },
+    close() {
+      this.visible = false;
     },
   },
 };

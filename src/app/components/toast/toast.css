@@ -1,5 +1,5 @@
 .toast {
-  @apply p-1 w-2/3 shadow-inner text-xs rounded border-2 font-bold text-center uppercase;
+  @apply py-1 px-4 w-2/3 flex justify-between items-center shadow-inner text-xs rounded border-2 font-bold text-center uppercase;
   @apply fixed transform -translate-x-1/2;
 
   left: 50%;
@@ -16,4 +16,16 @@
 
 .toast.success {
   @apply bg-green-200 border-green-400 text-green-400;
+}
+
+.toast-message {
+  @apply flex-grow;
+}
+
+.toast-close {
+  @apply text-xl;
+}
+
+.toast .emoji {
+  @apply inline w-5;
 }
