@@ -5,6 +5,7 @@
 <script>
 import LocalStorage from './infrastructure/cache/local-storage';
 import StationChooser from './app/views/station-chooser/station-chooser.vue';
+import { AggregateStationRepository, ApiStationRepository, InMemoryStationRepository } from './app/repository/station';
 
 /**
  * TODO:
@@ -20,8 +21,16 @@ export default {
     StationChooser,
   },
   provide() {
+    const cache = new LocalStorage();
+    const inMemoryStationRepository = new InMemoryStationRepository(cache);
+    const apiStationRepository = new ApiStationRepository(cache);
+    const aggregateStationRepository = new AggregateStationRepository([
+      inMemoryStationRepository,
+      apiStationRepository,
+    ]);
+
     return {
-      cache: new LocalStorage(),
+      repository: aggregateStationRepository,
     };
   },
 };

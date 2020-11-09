@@ -18,21 +18,22 @@
     <div class="keyboard-container">
       <div class="container">
         <user-input :value="keyboardInput" />
-        <keyboard :buttons-sets="keyboardButtons" @keyboard-click="onKeyboardButtonClick" />
+        <keyboard :buttons-sets="keyboardButtons" @keyboardClick="onKeyboardButtonClick" />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import { ref, inject } from 'vue';
 import { createKeyboard, keyboardDisabler, handleInput } from './utils';
+import StationRepository from '../../../domain/repository/station-repository';
+import Station from '../../../domain/model/station';
 import List from '../../components/list/list.vue';
-import { AggregateStationRepository, ApiStationRepository, InMemoryStationRepository } from '../../repository/station';
 import Loader from '../../components/loader/loader.vue';
 import Toast from '../../components/toast/toast.vue';
 import UserInput from '../../components/user-input/user-input.vue';
 import Keyboard from '../../components/keyboard/keyboard.vue';
-import Station from '../../../domain/model/station';
 import NoResults from '../../components/no-results/no-results.vue';
 
 import './station-chooser.css';
@@ -40,51 +41,50 @@ import './station-chooser.css';
 export default {
   name: 'StationChooser',
   components: { NoResults, Keyboard, UserInput, Toast, Loader, List },
-  data() {
-    return {
-      state: 'none',
-      stationsCollection: [],
-      visibleStations: [],
-      selectedStation: null,
-      keyboardButtons: createKeyboard(),
-      keyboardInput: '',
-    };
-  },
-  inject: ['cache'],
-  async created() {
-    this.state = 'loading';
-    const apiRepository = new ApiStationRepository(this.cache);
-    const inMemoryRepository = new InMemoryStationRepository(this.cache);
-    const aggregateRepository = new AggregateStationRepository([inMemoryRepository, apiRepository]);
+  inject: ['repository'],
+  setup() {
+    const state = ref('none');
+    const stationsCollection = ref<Station[]>([]);
+    const visibleStations = ref<Station[]>([]);
+    const selectedStation = ref('');
+    const keyboardButtons = ref(createKeyboard());
+    const keyboardInput = ref('');
 
-    try {
-      this.stationsCollection = await aggregateRepository.fetch();
-      this.visibleStations = this.stationsCollection;
-      this.keyboardButtons = this.keyboardButtons.map(
-        keyboardDisabler(this.keyboardInput.length, this.visibleStations),
+    const onStationSelect = (value: string) => (selectedStation.value = value);
+    const refreshKeyboard = () =>
+      (keyboardButtons.value = keyboardButtons.value.map(
+        keyboardDisabler(keyboardInput.value.length, visibleStations.value),
+      ));
+    const scrollToTop = () => document.querySelector('.list')?.scrollIntoView();
+    const onKeyboardButtonClick = (value: string) => {
+      keyboardInput.value = handleInput(keyboardInput.value, value);
+      visibleStations.value = stationsCollection.value.filter((station: Station) =>
+        station.name.toLowerCase().startsWith(keyboardInput.value.toLowerCase()),
       );
-      this.state = 'success';
-    } catch {
-      this.state = 'error';
-    }
-  },
-  methods: {
-    onStationSelect(code: string) {
-      this.selectedStation = code;
-    },
-    onKeyboardButtonClick(value: string) {
-      this.keyboardInput = handleInput(this.keyboardInput, value);
-      this.visibleStations = this.stationsCollection.filter((station: Station) =>
-        station.name.toLowerCase().startsWith(this.keyboardInput.toLowerCase()),
-      );
-      this.keyboardButtons = this.keyboardButtons.map(
-        keyboardDisabler(this.keyboardInput.length, this.visibleStations),
-      );
-      this.scrollToTop();
-    },
-    scrollToTop() {
-      document.querySelector('.list')?.scrollIntoView();
-    },
+      refreshKeyboard();
+      scrollToTop();
+    };
+
+    (inject('repository') as StationRepository)
+      .fetch()
+      .then((stations: Station[]) => {
+        stationsCollection.value = stations;
+        visibleStations.value = stations;
+        refreshKeyboard();
+        state.value = 'success';
+      })
+      .catch(() => (state.value = 'error'));
+
+    return {
+      state,
+      stationsCollection,
+      visibleStations,
+      selectedStation,
+      keyboardButtons,
+      keyboardInput,
+      onStationSelect,
+      onKeyboardButtonClick,
+    };
   },
 };
 </script>
