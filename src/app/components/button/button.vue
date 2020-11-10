@@ -3,6 +3,7 @@
     @click="$emit('button-click', this.modelValue)"
     class="btn"
     :class="{ [`btn-${size}`]: ['md', 'lg'].includes(size), disabled }"
+    :qa="modelValue"
   >
     <span v-html="viewValue ?? modelValue"></span>
   </button>
