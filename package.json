@@ -6,12 +6,11 @@
     "build": "vite build --base ./ --sourcemap true --assetsDir .",
     "test": "yarn test:unit && yarn test:e2e",
     "test:unit": "jest",
-    "test:e2e": "cypress:run",
+    "test:e2e": "cypress run",
     "lint": "yarn lint:scripts && yarn lint:styles",
     "lint:scripts": "eslint --ext .ts,.tsx,.vue ./src",
     "lint:styles": "stylelint  \"./src/**/*.css\" ",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
     "deploy": "node ./scripts/deploy.js"
   },
   "dependencies": {
