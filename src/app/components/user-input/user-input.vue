@@ -5,7 +5,6 @@
 <script>
 import './user-input.css';
 
-// TODO: Post MVP: Add possibility for user to type
 export default {
   name: 'UserInput',
   props: {

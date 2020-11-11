@@ -15,7 +15,6 @@ describe('UserInput', () => {
     expect(input.element.value).toBe('FOO');
   });
 
-  // TODO: Post MVP: Will be to remove
   test('should be disabled', () => {
     // @ts-ignore
     const wrapper = shallowMount(UserInput, {
@@ -28,7 +27,4 @@ describe('UserInput', () => {
 
     expect(input.attributes('disabled')).toBeDefined();
   });
-
-  // TODO: Post MVP: Implement test
-  // test('should fire callback on each keystroke', () => {});
 });
