@@ -1,5 +1,6 @@
 <template>
   <div class="list" v-if="areStationsValid(stations)">
+    <p class="list-length">Select one of the {{ stations.length }} stations:</p>
     <div
       class="station"
       :class="{ selected: selectedStation === code }"

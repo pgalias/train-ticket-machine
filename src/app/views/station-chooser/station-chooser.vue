@@ -4,9 +4,9 @@
     type="danger"
     message="Error occurred during resolving available stations. Try again"
   />
-  <loader v-if="state === 'loading'" />
-  <div v-if="state === 'success'">
-    <div class="container list-container">
+  <div v-if="['success', 'loading'].includes(state)">
+    <loader v-if="state === 'loading'" />
+    <div v-if="state === 'success'" class="container list-container">
       <list
         v-if="visibleStations.length"
         :stations="visibleStations"
@@ -15,11 +15,11 @@
       />
       <no-results v-if="visibleStations.length === 0" />
     </div>
-    <div class="keyboard-container">
-      <div class="container">
-        <user-input :value="keyboardInput" />
-        <keyboard :buttons-sets="keyboardButtons" @keyboardClick="onKeyboardButtonClick" />
-      </div>
+  </div>
+  <div class="keyboard-container">
+    <div class="container">
+      <user-input :value="keyboardInput" />
+      <keyboard :buttons-sets="keyboardButtons" @keyboardClick="onKeyboardButtonClick" />
     </div>
   </div>
 </template>
@@ -43,7 +43,7 @@ export default {
   components: { NoResults, Keyboard, UserInput, Toast, Loader, List },
   inject: ['repository'],
   setup() {
-    const state = ref('none');
+    const state = ref('loading');
     const stationsCollection = ref<Station[]>([]);
     const visibleStations = ref<Station[]>([]);
     const selectedStation = ref('');

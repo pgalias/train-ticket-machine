@@ -26,11 +26,13 @@ describe('List', () => {
       });
 
       const renderedStations = wrapper.findAll('.station');
+      const listLength = wrapper.find('.list-length');
 
       expect(renderedStations).toHaveLength(3);
       expect(renderedStations[0].text()).toBe('Dartford');
       expect(renderedStations[1].text()).toBe('Four Oaks');
       expect(renderedStations[2].text()).toBe('London Paddington');
+      expect(listLength.text()).toContain(3);
     });
 
     test('should not render when stations list was not passed', () => {

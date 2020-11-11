@@ -1,3 +1,7 @@
+.list {
+  @apply mt-4;
+}
+
 .station {
   @apply items-center gap-3 cursor-pointer my-4;
 
