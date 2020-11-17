@@ -11,7 +11,7 @@
     "lint:scripts": "eslint --ext .ts,.tsx,.vue ./src",
     "lint:styles": "stylelint  \"./src/**/*.css\" ",
     "cypress:open": "cypress open",
-    "deploy": "node ./scripts/deploy.js"
+    "build-to-branch": "node ./scripts/build-to-branch.js"
   },
   "dependencies": {
     "lodash-es": "^4.17.15",

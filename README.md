@@ -56,7 +56,7 @@ To install all dependencies just run `yarn` or `npm i` command.
 - `lint:styles` it runs stylelint
 - `lint` it runs two above commands at once
 - `cypress:open` it opens cypress application
-- `deploy` it runs script to deploy dev bundle to [Github Pages](https://train-ticket-machine.netlify.app)
+- `build-to-branch` it builds application and deploy it to gh-pages branch
 
 ### More information
 
