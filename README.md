@@ -1,7 +1,7 @@
 ![Build](https://github.com/pgalias/train-ticket-machine/workflows/Check%20commit/badge.svg?branch=main)
 [![codecov](https://codecov.io/gh/pgalias/train-ticket-machine/branch/main/graph/badge.svg?token=6FEa5sKzOz)](undefined)
 
-See application [here](https://pgalias.github.io/train-ticket-machine/)
+See application [here](https://train-ticket-machine.netlify.app)
 
 ## Table of Contents
 
@@ -56,7 +56,7 @@ To install all dependencies just run `yarn` or `npm i` command.
 - `lint:styles` it runs stylelint
 - `lint` it runs two above commands at once
 - `cypress:open` it opens cypress application
-- `deploy` it runs script to deploy dev bundle to [Github Pages](https://pgalias.github.io/train-ticket-machine/)
+- `deploy` it runs script to deploy dev bundle to [Github Pages](https://train-ticket-machine.netlify.app)
 
 ### More information
 
@@ -84,4 +84,4 @@ Pawel Galias - [linkedin](https://linkedin.com/in/pawgalias) - [pawel@galias.me]
 
 Project Link: [https://github.com/pawgalias/train-ticket-machine](https://github.com/pawgalias/train-ticket-machine)
 
-Project Demo: [https://pgalias.github.io/train-ticket-machine/](https://pgalias.github.io/train-ticket-machine/)
+Project Demo: [https://train-ticket-machine.netlify.app](https://train-ticket-machine.netlify.app)
