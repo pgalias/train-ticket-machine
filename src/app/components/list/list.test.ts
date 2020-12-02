@@ -32,7 +32,7 @@ describe('List', () => {
       expect(renderedStations[0].text()).toBe('Dartford');
       expect(renderedStations[1].text()).toBe('Four Oaks');
       expect(renderedStations[2].text()).toBe('London Paddington');
-      expect(listLength.text()).toContain(3);
+      expect(listLength.text()).toContain('3');
     });
 
     test('should not render when stations list was not passed', () => {
