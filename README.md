@@ -39,11 +39,11 @@ As the user types each character of the station's name on the touchscreen, the d
 
 ### Prerequisites
 
-To use this project there is `npm` or `yarn` packages managers needed.
+To use this project there is `yarn` package manager needed.
 
 ### Installation
 
-To install all dependencies just run `yarn` or `npm i` command.
+To install all dependencies just run `yarn` command.
 
 ### Available commands
 
@@ -66,7 +66,7 @@ command.
 
 ## Running application
 
-1. Run application: `yarn dev` or `npm run dev`
+1. Run application: `yarn dev`
 2. Navigate to `localhost:3000`
 
 ## Further changes
