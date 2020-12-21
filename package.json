@@ -14,7 +14,7 @@
     "build-to-branch": "node ./scripts/build-to-branch.js"
   },
   "dependencies": {
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.20",
     "tailwindcss": "^1.9.6",
     "vue": "^3.0.4"
   },
