@@ -1699,10 +1699,10 @@
     semver "^7.3.2"
     tsutils "^3.17.1"
 
-"@vitejs/plugin-vue@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.0.5.tgz#2639178e975bebc505e9be1c88d25faf9bc4dd06"
-  integrity sha512-Fq/Z1rTs7j3QhvmIjeIHqInw2YneXa8Td3z7cYQhyAZXF/WmGMegbapeBqGAoAcGSOfWpOO7Tr0c/T+Qke0O6Q==
+"@vitejs/plugin-vue@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.1.0.tgz#8ae0b11388897b07259c9e5198c0e3fb5e4b37d9"
+  integrity sha512-ExlAt3nb3PB31jV9AgRZSMoGd+aQRU53fc/seghV8/l0JCzaX2mqlgpG8iytWkRxbBPgtAx4TpCPdiVKnTFT/A==
 
 "@vue/cli-plugin-unit-jest@^4.5.10":
   version "4.5.10"
